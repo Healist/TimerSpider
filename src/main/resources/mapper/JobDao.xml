@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper  namespace="com.healist.dao.JobDao">
+    <insert id="saveJobInfo" parameterType="JobInfoModel">
+            insert into jobinfo(title, places, dates, url, down_date) values(#{title}, #{where}, #{date}, #{url}, #{down_date})
+    </insert>
+
+    <select id="query" parameterType="string" resultType="int">
+        select COUNT(*) as total from jobinfo where url=#{url}
+    </select>
+
+    <select id="getJobInfo" resultType="JobInfoModel" parameterType="int">
+        select *
+        from jobinfo
+        order by down_date desc
+        limit #{offset},#{limit}
+    </select>
+
+    <select id="findByUsername" resultType="User" parameterType="string">
+        select *
+        from user
+        where username = #{username}
+    </select>
+
+    <select id="findOne" resultType="User" parameterType="long">
+        select *
+        from user
+        where id = #{id}
+    </select>
+
+    <insert id="register" parameterType="User">
+        insert into user(username, password, email, sex) values(#{username}, #{password}, #{email}, #{sex})
+    </insert>
+
+    <select id="getJobInfoById" resultType="JobInfoModel" parameterType="int">
+        select *
+        from jobinfo
+        where id = #{id}
+    </select>
+
+    <insert id="addEmailTask" parameterType="EmailTaskModel">
+        insert into email_task(id, user_id, report_id, execute_day, user_email) values(#{id}, #{userId}, #{reportId}, #{executeDay}, #{userEmail})
+    </insert>
+
+    <select id="selectAll" resultType="EmailTaskModel">
+        select *
+        from email_task
+    </select>
+
+    <select id="getFocusList" resultType="FocusListModel" parameterType="int">
+        select report_id
+        from email_task
+        where user_id = #{userId}
+    </select>
+
+    <delete id="removeEmailTask">
+        delete
+        from email_task
+        where user_id = #{userId} and report_id = #{reportId}
+    </delete>
+
+</mapper>
