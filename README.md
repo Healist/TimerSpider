@@ -9,4 +9,4 @@ InfoHunter ——  宣讲会信息展示webapp的后端
 > * spring mail （发送邮件）
 > * MySql
 
-[想了解更多，请查看我的博客介绍](http://blog.csdn.net/Healist/article/details/54838621)
+[想了解更多，请查看我的个人博客介绍](http://blog.csdn.net/Healist/article/details/54838621)
